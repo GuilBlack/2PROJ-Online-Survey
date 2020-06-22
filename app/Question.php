@@ -9,6 +9,10 @@ class Question extends Model
     //
     protected $guarded = [];
 
+    protected $casts = [
+        'option' => 'array',
+    ];
+
     public function survey() {
         return $this->belongsTo(Survey::class);
     }

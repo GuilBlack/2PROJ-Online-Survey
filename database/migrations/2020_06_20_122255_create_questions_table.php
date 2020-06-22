@@ -18,7 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->unsignedBigInteger('survey_id');
             $table->string('question');
             $table->string('type');
-            $table->string('option');
+            $table->string('option')->nullable();
             $table->timestamps();
         });
     }

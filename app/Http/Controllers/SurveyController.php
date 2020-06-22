@@ -4,13 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Survey;
+use App\User;
 
 class SurveyController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth');
-    }
-
     //
     public function create() {
         return view('survey.create');
@@ -34,7 +31,14 @@ class SurveyController extends Controller
     }
 
     public function show() {
-        return view('survey.show');
+        $surveys = Survey::where('visible', 1)->paginate(10);
+        return view('pages.survey', compact('surveys', 'users'));
+    }
+
+    public function makeVisible(Survey $survey) {
+        $survey->visible = 1;
+        $survey->save();
+        return redirect('/');
     }
 
 }

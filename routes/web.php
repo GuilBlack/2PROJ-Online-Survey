@@ -28,7 +28,7 @@ Route::get('/users/{id}/{name}', function ($id, $name) {
 
 Route::get('/about', 'PagesController@about');
 
-Route::get('/general-survey', 'PagesController@survey');
+Route::get('/general-survey', 'SurveyController@show');
 
 Route::resource('support', 'ContactRequestsController');
 
@@ -36,8 +36,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/surveys/create', 'SurveyController@create');
-Route::post('/surveys', 'SurveyController@store');
-Route::get('/surveys/{survey}/question/create', 'QuestionsController@create');
+Route::get('/surveys/create', 'SurveyController@create')->middleware('auth');
+Route::post('/surveys', 'SurveyController@store')->middleware('auth');
+Route::get('/surveys/{survey}/questions/create', 'QuestionsController@create')->middleware('auth');
 Route::get('/surveys/{survey}', 'SurveyController@show');
-
+Route::post('/surveys/{survey}/questions', 'QuestionsController@store')->middleware('auth');
+Route::get('/surveys/{survey}/make-public', 'SurveyController@makeVisible')->middleware('auth');

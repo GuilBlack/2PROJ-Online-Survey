@@ -21,27 +21,27 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
-              <a class="p-2 text-dark" href="/">Home</a>
-              <a class="p-2 text-dark" href="/general-survey">Survey</a>
-              <a class="p-2 text-dark" href="/about">About Us</a>
-              <a class="p-2 text-dark" href="/support">Support</a>
+              <a class="p-2 text-dark" style="margin-right: 0.5em;" href="/"><span class="material-icons" style="font-size: 25px">home</span></a>
+              <a class="p-2 text-dark" style="margin-right: 0.5em;" href="/general-survey"><span class="material-icons" style="font-size: 25px">search</span></a>
+              <a class="p-2 text-dark" style="margin-right: 0.5em;" href="/about">About Us</a>
+              <a class="p-2 text-dark" style="margin-right: 0.5em;" href="/support">Support</a>
                 <!-- Authentication Links -->
                 @guest
                     {{-- <li> --}}
-                        <a class="btn btn-outline-primary" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" style="margin-right: 0.5em;" href="{{ route('login') }}">{{ __('Login') }}</a>
                     {{-- </li> --}}
                     @if (Route::has('register'))
                         {{-- <li> --}}
-                            <a class="btn btn-outline-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" style="margin-right: 0.5em;" href="{{ route('register') }}">{{ __('Register') }}</a>
                         {{-- </li> --}}
                     @endif
                 @else
-                    <li class="nav-item dropdown">
+                    <li id="navbar-user-dropdown" class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <div id="navbar-dropdown-items" class="dropdown-menu dropdown-menu-right" aria-labelledby="#navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
