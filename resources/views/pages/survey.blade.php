@@ -19,7 +19,7 @@
                                     <h3><a href="/surveys/{{$survey->id}}/take-survey">{{$survey->title}}</a></h3>
                                     <h5>Description:</h5>
                                     <p>{{ $survey->description }}</p>
-                                    <small>Written by {{App\User::find($survey->user_id)->name}} on {{$survey->created_at}}</small>
+                                    <small>Written by {{$survey->user->name}} on {{$survey->created_at}}</small>
                                 </div>
                             @endforeach
                             {{$surveys->links()}}

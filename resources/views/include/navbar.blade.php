@@ -8,7 +8,7 @@
 
   <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-      <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/" id="jenesaispasquoimettreici">{{config('app.name', 'Online Survey')}}</a></h5>
+      <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/" id="jenesaispasquoimettreici" style="font-size: 25px; margin-right: 0.5em">{{config('app.name', 'Online Survey')}}</a></h5>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>

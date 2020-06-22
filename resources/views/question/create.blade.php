@@ -65,7 +65,7 @@
                                         <div class="card-body">
                                             <div class="container">
                                                     @if($question->type === 'text')
-                                                    <input type="email" class="form-control" placeholder="Write your answer here!" />
+                                                    <input type="text" class="form-control" placeholder="Write your answer here!" />
                                                     @elseif($question->type === 'textarea')
                                                         <textarea type="text" class="form-control" placeholder="Write your answer here!" name="message" rows="5" data-form-field="Message" id="{{$question->id}}-input"></textarea>
                                                     @elseif($question->type === 'radio')
@@ -90,7 +90,7 @@
                     @if ($survey->visible == 1)
                         <a class="btn btn-danger btn-lg" href="/surveys/{{ $survey->id }}/delete" style="margin-top: 10px">Delete</a>
                     @else
-                        @if (count($questions) > 0)
+                        @if (count($survey->questions) >= 1)
                             <a class="btn btn-primary btn-lg" href="/surveys/{{ $survey->id }}/make-public" style="margin-top: 10px">Publish</a>
                         @endif
                     @endif

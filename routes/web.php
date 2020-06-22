@@ -42,3 +42,5 @@ Route::get('/surveys/{survey}/questions/create', 'QuestionsController@create')->
 Route::get('/surveys/{survey}', 'SurveyController@show');
 Route::post('/surveys/{survey}/questions', 'QuestionsController@store')->middleware('auth');
 Route::get('/surveys/{survey}/make-public', 'SurveyController@makeVisible')->middleware('auth');
+Route::get('/surveys/{survey}/take-survey', 'SurveyController@takeSurvey');
+Route::post('/surveys/{survey}/answers', 'AnswerController@store');

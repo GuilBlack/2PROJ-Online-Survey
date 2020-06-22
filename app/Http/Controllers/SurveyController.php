@@ -25,7 +25,8 @@ class SurveyController extends Controller
 
         //can use this form because we established a relationship between User and Surver class
         //else we can use what's up
-        $survey = auth()->user()->surveys()->create($data); 
+        $data['visible'] = 0;
+        $survey = auth()->user()->surveys()->create($data);
 
         return redirect('/surveys/'.$survey->id.'/questions/create');
     }
@@ -39,6 +40,10 @@ class SurveyController extends Controller
         $survey->visible = 1;
         $survey->save();
         return redirect('/');
+    }
+
+    public function takeSurvey(Survey $survey) {
+        return view('survey.takesurvey', compact('survey'));
     }
 
 }

@@ -25,7 +25,7 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.add-option', function() {
-        choiceIndex += 1;
+        ++choiceIndex;
         var fields = '<div class="form-group option-group">' +
         '<label for="option">Option ' + choiceIndex + '</label>' +
         '<input name="option[]" id="option[]" placeholder="Enter Option Here" type="text" class="form-control" autocomplete="off">' +
