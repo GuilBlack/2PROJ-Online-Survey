@@ -42,8 +42,19 @@ class SurveyController extends Controller
         return redirect('/');
     }
 
+    public function makeVisiblePrivately(Survey $survey) {
+        $survey->visible = 2;
+        $survey->save();
+        return redirect('/');
+    }
+
     public function takeSurvey(Survey $survey) {
         return view('survey.takesurvey', compact('survey'));
+    }
+
+    public function showAnalytics() {
+        $survey = Survey::all();
+        return view('survey.show-analytics', compact('survey'));
     }
 
 }

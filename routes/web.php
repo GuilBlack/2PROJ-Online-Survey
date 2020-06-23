@@ -44,3 +44,5 @@ Route::post('/surveys/{survey}/questions', 'QuestionsController@store')->middlew
 Route::get('/surveys/{survey}/make-public', 'SurveyController@makeVisible')->middleware('auth');
 Route::get('/surveys/{survey}/take-survey', 'SurveyController@takeSurvey');
 Route::post('/surveys/{survey}/answers', 'AnswerController@store');
+Route::get('/surveys/{survey}/make-private', 'SurveyController@makeVisiblePrivately');
+Route::get('/analytics', 'SurveyController@showAnalytics');

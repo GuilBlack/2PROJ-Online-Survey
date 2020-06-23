@@ -2,7 +2,7 @@
 @section('content')
 @include('include.messages')
 
-@if ($survey->visible != 1)
+@if ($survey->visible != 1 && $survey->visible != 2)
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -50,6 +50,14 @@
                 </div>
 
                 <div class="card-body">
+                    @if ($survey->visible == 1 || $survey->visible == 2)
+                        <a class="btn btn-primary btn-lg" href="/analytics" style="float: right">
+                            <span class="material-icons" style="font-size: 25px; float: left;">insert_chart</span>&nbsp;
+                            Show Analytics
+                        </a>
+                        <p>Take Survey on this link:</p>
+                        <a href="/surveys/{{$survey->id}}/take-survey" style="font-size: 20px;">http://surveys/{{$survey->id}}/take-survey</a></br></br>
+                    @endif
                     <div class="accordion" id="accordionExample">
                             @forelse ($survey->questions as $question)
                                 <div class="card">
@@ -87,11 +95,12 @@
                                 <p class="text-lg-left">No Questions Added Yet</p>
                             @endforelse
                     </div>
-                    @if ($survey->visible == 1)
+                    @if ($survey->visible == 1 || $survey->visible == 2)
                         <a class="btn btn-danger btn-lg" href="/surveys/{{ $survey->id }}/delete" style="margin-top: 10px">Delete</a>
                     @else
                         @if (count($survey->questions) >= 1)
                             <a class="btn btn-primary btn-lg" href="/surveys/{{ $survey->id }}/make-public" style="margin-top: 10px">Publish</a>
+                            <a class="btn btn-primary btn-lg" href="/surveys/{{ $survey->id }}/make-private" style="margin-top: 10px; float: right;">Publish Privately</a>
                         @endif
                     @endif
                 </div>

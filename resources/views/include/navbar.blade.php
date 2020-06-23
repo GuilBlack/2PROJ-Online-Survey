@@ -21,6 +21,7 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+                 
               <a class="p-2 text-dark" style="margin-right: 0.5em;" href="/"><span class="material-icons" style="font-size: 25px">home</span></a>
               <a class="p-2 text-dark" style="margin-right: 0.5em;" href="/general-survey"><span class="material-icons" style="font-size: 25px">search</span></a>
               <a class="p-2 text-dark" style="margin-right: 0.5em;" href="/about">About Us</a>
