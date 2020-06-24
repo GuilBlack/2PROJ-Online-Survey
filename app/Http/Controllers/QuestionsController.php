@@ -10,10 +10,14 @@ class QuestionsController extends Controller
 {
     //
     public function create(Survey $survey) {
+
+        $this->authorize('view', $survey);
         return view('question.create', compact('survey'));
     }
 
     public function store(Request $request, Survey $survey) {
+        
+        $this->authorize('view', $survey);
         $data = $request->validate([
             'type' => 'required|string|min:1|max:255',
             'question' => 'required|string|min:1|max:255',
@@ -26,10 +30,14 @@ class QuestionsController extends Controller
     }
 
     public function show(Question $question) {
+
+        $this->authorize('view', $question->survey);
         return view('question.show', compact('question'));
     }
 
     public function edit(Request $request, Question $question) {
+
+        $this->authorize('view', $question->survey);
         $data = $request->validate([
             'question' => 'required|string|min:1|max:255',
             'option' => 'array|max:255|nullable',
@@ -45,6 +53,8 @@ class QuestionsController extends Controller
     }
 
     public function delete(Question $question) {
+
+        $this->authorize('view', $question->survey);
         $question->delete();
         return redirect('/surveys/'.$question->survey->id.'/questions/create');
     }

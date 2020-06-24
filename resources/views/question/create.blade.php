@@ -51,12 +51,12 @@
 
                 <div class="card-body">
                     @if ($survey->visible == 1 || $survey->visible == 2)
-                        <a class="btn btn-primary btn-lg" href="/analytics" style="float: right">
+                        <a class="btn btn-primary btn-lg" href="/analytics/{{$survey->id}}" style="float: right">
                             <span class="material-icons" style="font-size: 25px; float: left;">insert_chart</span>&nbsp;
                             Show Analytics
                         </a>
                         <p>Take Survey on this link:</p>
-                        <a href="/surveys/{{$survey->id}}/take-survey" style="font-size: 20px;">http://surveys/{{$survey->id}}/take-survey</a></br></br>
+                        <a href="/surveys/{{$survey->id}}/take-survey" style="font-size: 20px;">http://online-survey.test/surveys/{{$survey->id}}/take-survey</a></br></br>
                     @endif
                     <div class="accordion" id="accordionExample">
                             @forelse ($survey->questions as $question)
@@ -82,13 +82,16 @@
                                                         <textarea type="text" class="form-control" placeholder="Write your answer here!" name="message" rows="5" data-form-field="Message" id="{{$question->id}}-input"></textarea>
                                                     @elseif($question->type === 'radio')
                                                         @foreach ($question->option as $key=>$value)
-                                                            <input class="form-check-input" type="radio" id="{{ $key }}" />
-                                                            <label class="form-check-label" for="{{ $key }}">{{ $value }}</label></br></br>
+                                                            <input class="form-check-input" type="radio" id="{{$question->id}}-{{ $key }}" value="{{$value}}"
+                                                            @if ($key == 0)
+                                                                checked
+                                                            @endif />
+                                                            <label class="form-check-label" for="{{$question->id}}-{{ $key }}">{{ $value }}</label></br></br>
                                                         @endforeach
                                                     @elseif($question->type === 'checkbox')
                                                         @foreach ($question->option as $key=>$value)
-                                                            <input class="form-check-input" type="checkbox" id="{{ $key }}" />
-                                                            <label class="form-check-label" for="{{ $key }}">{{ $value }}</label></br></br>
+                                                            <input class="form-check-input" type="checkbox" id="{{$question->id}}-{{ $key }}" />
+                                                            <label class="form-check-label" for="{{$question->id}}-{{ $key }}">{{ $value }}</label></br></br>
                                                         @endforeach
                                                     @endif
                                             </div>

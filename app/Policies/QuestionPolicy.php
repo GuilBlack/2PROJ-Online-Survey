@@ -2,11 +2,12 @@
 
 namespace App\Policies;
 
-use App\Survey;
+use App\Question;
 use App\User;
+use App\Survey;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class SurveyPolicy
+class QuestionPolicy
 {
     use HandlesAuthorization;
 
@@ -23,14 +24,9 @@ class SurveyPolicy
 
     /**
      * Determine whether the user can view the model.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Survey  $survey
-     * @return mixed
      */
     public function view(User $user, Survey $survey)
     {
-        //
         return $user->id == $survey->user_id;
     }
 
@@ -49,10 +45,10 @@ class SurveyPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Survey  $survey
+     * @param  \App\Question  $question
      * @return mixed
      */
-    public function update(User $user, Survey $survey)
+    public function update(User $user, Question $question)
     {
         //
     }
@@ -61,10 +57,10 @@ class SurveyPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Survey  $survey
+     * @param  \App\Question  $question
      * @return mixed
      */
-    public function delete(User $user, Survey $survey)
+    public function delete(User $user, Question $question)
     {
         //
     }
@@ -73,10 +69,10 @@ class SurveyPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Survey  $survey
+     * @param  \App\Question  $question
      * @return mixed
      */
-    public function restore(User $user, Survey $survey)
+    public function restore(User $user, Question $question)
     {
         //
     }
@@ -85,10 +81,10 @@ class SurveyPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\User  $user
-     * @param  \App\Survey  $survey
+     * @param  \App\Question  $question
      * @return mixed
      */
-    public function forceDelete(User $user, Survey $survey)
+    public function forceDelete(User $user, Question $question)
     {
         //
     }
