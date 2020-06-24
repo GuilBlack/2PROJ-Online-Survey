@@ -63,9 +63,13 @@
                                 <div class="card">
                                     <div class="card-header" id="{{$question->id}}-heading">
                                         <h5 class="mb-0">
-                                            <button type="button" class="btn btn-link btn-block text-left" data-toggle="collapse" data-target="#{{$question->id}}-collapse" aria-expanded="false" aria-controls="{{$question->id}}-collapse">
+                                            <button type="button" class="btn btn-link text-left" data-toggle="collapse" data-target="#{{$question->id}}-collapse" aria-expanded="false" aria-controls="{{$question->id}}-collapse">
                                                 {{$question->question}}
                                             </button>
+                                            @if ($survey->visible != 1 && $survey->visible != 2)
+                                            <a href="/questions/{{$question->id}}/delete"><span class="material-icons" style="font-size: 25px; float: right; color: red; margin-left: 5px">delete_forever</span></a>
+                                            <a href="/questions/{{$question->id}}/show"><span class="material-icons" style="font-size: 25px; float: right;">create</span></a>
+                                            @endif
                                         </h5>
                                     </div>
 

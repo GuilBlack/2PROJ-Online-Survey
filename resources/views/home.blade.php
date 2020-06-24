@@ -26,7 +26,10 @@
                         @if (count($surveys) > 0)
                             @foreach($surveys as $survey)
                                 <div class="card card-body bg-light" style="margin-bottom: 10px">
-                                    <h3><a href="/surveys/{{$survey->id}}/questions/create">{{$survey->title}}</a></h3>
+                                    <h3>
+                                        <a href="/surveys/{{$survey->id}}/questions/create">{{$survey->title}}</a>
+                                        <a href="/surveys/{{$survey->id}}/delete"><span class="material-icons" style="font-size: 25px; float: right; color: red;">delete_forever</span></a>
+                                    </h3>
                                     <h5>Description:</h5>
                                     <p>{{ $survey->description }}</p>
                                     <small>Written on {{$survey->created_at}}</small>

@@ -37,6 +37,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/surveys/create', 'SurveyController@create')->middleware('auth');
+Route::get('/surveys/{survey}/delete', 'SurveyController@delete')->middleware('auth');
 Route::post('/surveys', 'SurveyController@store')->middleware('auth');
 Route::get('/surveys/{survey}/questions/create', 'QuestionsController@create')->middleware('auth');
 Route::get('/surveys/{survey}', 'SurveyController@show');
@@ -46,3 +47,8 @@ Route::get('/surveys/{survey}/take-survey', 'SurveyController@takeSurvey');
 Route::post('/surveys/{survey}/answers', 'AnswerController@store');
 Route::get('/surveys/{survey}/make-private', 'SurveyController@makeVisiblePrivately');
 Route::get('/analytics', 'SurveyController@showAnalytics');
+
+Route::get('/questions/{question}/show', 'QuestionsController@show')->middleware('auth');
+Route::post('/questions/{question}/edit', 'QuestionsController@edit')->middleware('auth');
+Route::get('/questions/{question}/delete', 'QuestionsController@delete')->middleware('auth');
+

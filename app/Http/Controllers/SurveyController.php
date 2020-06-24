@@ -57,4 +57,15 @@ class SurveyController extends Controller
         return view('survey.show-analytics', compact('survey'));
     }
 
+    public function delete(Survey $survey) {
+        foreach ($survey->questions as $question) {
+            foreach($question->answers as $answer) {
+                $answer->delete();
+            }
+            $question->delete();
+        }
+        $survey->delete();
+        return redirect('/');
+    }
+
 }
