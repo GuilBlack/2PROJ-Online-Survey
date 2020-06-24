@@ -16,7 +16,7 @@ class QuestionsController extends Controller
     }
 
     public function store(Request $request, Survey $survey) {
-        
+
         $this->authorize('view', $survey);
         $data = $request->validate([
             'type' => 'required|string|min:1|max:255',
@@ -30,14 +30,21 @@ class QuestionsController extends Controller
     }
 
     public function show(Question $question) {
-
         $this->authorize('view', $question->survey);
+        if ($question->survey->visible == 1 || $question->survey->visible == 2) {
+            return redirect('/');
+        }
+        
         return view('question.show', compact('question'));
     }
 
     public function edit(Request $request, Question $question) {
 
         $this->authorize('view', $question->survey);
+        if ($question->survey->visible == 1 || $question->survey->visible == 2) {
+            return redirect('/');
+        }
+
         $data = $request->validate([
             'question' => 'required|string|min:1|max:255',
             'option' => 'array|max:255|nullable',

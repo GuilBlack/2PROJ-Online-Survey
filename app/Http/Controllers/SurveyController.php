@@ -73,11 +73,17 @@ class SurveyController extends Controller
 
     public function editShow(Survey $survey) {
         $this->authorize('view', $survey);
+        if ($survey->visible == 1 || $survey->visible == 2) {
+            return redirect('/');
+        }
         return view('survey.edit', compact('survey'));
     }
 
     public function edit(Survey $survey) {
         $this->authorize('view', $survey);
+        if ($survey->visible == 1 || $survey->visible == 2) {
+            return redirect('/');
+        }
         $data = request()->validate([
             'title' => 'required|max:100',
             'description' => 'required|max:255',

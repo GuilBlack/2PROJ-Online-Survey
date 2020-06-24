@@ -23,7 +23,7 @@
                             </div>
                         @endif
 
-                        <a href="/surveys/create" class="btn btn-custom btn-lg btn-block">Create New Survey</a>
+                        <a href="/surveys/create" class="btn btn-custom btn-lg btn-block" style="margin-bottom: 15px">Create New Survey</a>
                         @if (count($surveys) > 0)
                             @foreach($surveys as $survey)
                                 @if($survey->visible == 0)
