@@ -26,6 +26,10 @@ class PagesController extends Controller
         return view('home')->with($data);
     }
 
+    public function landing() {
+        return view('landing.index');
+    }
+
     public function about() {
         $title = 'About Us';
         return view('pages.about')->with('title', $title);

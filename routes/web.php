@@ -35,6 +35,7 @@ Route::resource('support', 'ContactRequestsController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/landing-page', 'PagesController@landing');
 
 Route::get('/surveys/create', 'SurveyController@create')->middleware('auth');
 Route::get('/surveys/{survey}/delete', 'SurveyController@delete')->middleware('auth');
