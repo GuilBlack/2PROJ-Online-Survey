@@ -51,7 +51,23 @@ class SurveyController extends Controller
     }
 
     public function takeSurvey(Survey $survey) {
+        if ($survey->visible == 0 || $survey->visible == 2) {
+            return redirect('/');
+        }
         return view('survey.takesurvey', compact('survey'));
+    }
+
+    public function showConfirmation(Survey $survey) {
+        return view('survey.confirmation', compact('survey')); //TODO: i need to do the confirmation blade page
+    }
+
+    public function confirmation(Request $request, Survey $survey) {
+        $arr = $request->except('_token');
+        if ($arr['name'] == $survey->user->name && $arr['title'] == $survey->title) {
+            return view('survey.takesurvey', compact('survey'));
+        }else {
+            return response('Unauthorized.', 403);
+        }
     }
 
     public function showAnalytics(Survey $survey) {

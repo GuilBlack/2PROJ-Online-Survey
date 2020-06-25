@@ -48,8 +48,10 @@ Route::post('/surveys/{survey}/questions', 'QuestionsController@store')->middlew
 Route::get('/surveys/{survey}/make-public', 'SurveyController@makeVisible')->middleware('auth');
 Route::get('/surveys/{survey}/take-survey', 'SurveyController@takeSurvey');
 Route::post('/surveys/{survey}/answers', 'AnswerController@store');
-Route::get('/surveys/{survey}/make-private', 'SurveyController@makeVisiblePrivately');
-Route::get('/analytics/{survey}', 'SurveyController@showAnalytics');
+Route::get('/surveys/{survey}/make-private', 'SurveyController@makeVisiblePrivately')->middleware('auth');
+Route::get('/surveys/{survey}/take-private-survey', 'SurveyController@showConfirmation');
+Route::post('/surveys/{survey}/take-private-survey', 'SurveyController@confirmation');
+Route::get('/analytics/{survey}', 'SurveyController@showAnalytics')->middleware('auth');
 
 Route::get('/questions/{question}/show', 'QuestionsController@show')->middleware('auth');
 Route::post('/questions/{question}/edit', 'QuestionsController@edit')->middleware('auth');
