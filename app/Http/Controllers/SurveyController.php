@@ -33,7 +33,7 @@ class SurveyController extends Controller
 
     public function show() {
         $surveys = Survey::where('visible', 1)->orderBy('created_at', 'DESC')->paginate(10);
-        return view('pages.survey', compact('surveys', 'users'));
+        return view('pages.survey', compact('surveys'));
     }
 
     public function makeVisible(Survey $survey) {
