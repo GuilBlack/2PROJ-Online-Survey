@@ -107,7 +107,7 @@
                 <h1>Make Your Business More Profitable</h1>
                 <p class="mb-5">"Big Brother Survey Editor and Analyser - once you have it, you love it"</p>
                 <div>
-                  <a href="#" class="btn btn-primary mr-2 mb-2">Get Started</a>
+                  <a href="/register" class="btn btn-primary mr-2 mb-2">Get Started</a>
                 </div>
               </div>
               

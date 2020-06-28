@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <label for="title">Title:</label>
                             <input name="title" type="text" class="form-control" placeholder="Enter Title Here" id="title" autocomplete="off">
-                            <small id="titleHelp" class="form-text text-muted">Please give your survey a title that makes sens.</small>
+                            <small id="titleHelp" class="form-text text-muted">Please give your survey a title that makes sense.</small>
                             @error('title')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror

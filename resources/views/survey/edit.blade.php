@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Create New Survey</div>
+                <div class="card-header">Edit Survey Name & Description</div>
 
                 <div class="card-body">
                     <form action="/surveys/{{$survey->id}}/edit" method="POST">
@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <label for="title">Title:</label>
                             <input name="title" type="text" class="form-control" placeholder="Enter Title Here" id="title" autocomplete="off" value="{{$survey->title}}">
-                            <small id="titleHelp" class="form-text text-muted">Please give your survey a title that makes sens.</small>
+                            <small id="titleHelp" class="form-text text-muted">Please give your survey a title that makes sense.</small>
                             @error('title')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -29,7 +29,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Edit Survey</button>
+                        <button type="submit" class="btn btn-primary">Confirm Changes</button>
 
                     </form>
                 </div>
