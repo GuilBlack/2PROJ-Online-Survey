@@ -25,6 +25,6 @@ html {
 }
 
 .my-custom-scrollbar {
-    height: 200px !important;
+    height: 300px !important;
     overflow: auto !important;
 }

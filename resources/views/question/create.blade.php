@@ -10,7 +10,7 @@
             <div class="card-header"><h3>Add New Question</h3></div>
 
                 <div class="card-body">
-                <p class="alert-warning" role="alert">&nbsp; &nbsp;<span style="font-weight: bold;">!</span> Once you click on publish, you will not be able to add new questions.</p>
+                <p class="alert-warning" role="alert">&nbsp; &nbsp;<span style="font-weight: bold;">!</span> Once you click on publish, you will not be able to add new questions or edit/delete existing ones.</p>
                 <form action="/surveys/{{ $survey->id }}/questions" method="POST">
                         @csrf
                         <div class="row">

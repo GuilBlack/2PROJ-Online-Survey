@@ -97,7 +97,7 @@ class SurveyController extends Controller
                 $questionArr[$question->id] = $newArr;
 
             }else {
-                $newArr = Answer::where('question_id', $question->id)->get()->pluck('answer')->toArray();
+                $newArr = Answer::where('question_id', $question->id)->orderBy('created_at', 'DESC')->get()->pluck('answer')->toArray();
                 $questionArr[$question->id] = $newArr;
             }
         }

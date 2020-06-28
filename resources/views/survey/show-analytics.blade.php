@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" style="width: 100%">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -16,7 +16,7 @@
                                 <div class="card-header">
                                     {{$question->question}}
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body" id="q-{{$question->id}}-container">
                                     <div id="q-{{$question->id}}-row"></div>
                                     <div id="q-{{$question->id}}"></div>
                                 </div>
@@ -27,7 +27,7 @@
                                     {{$question->question}}
                                 </div>
                                 <div class="card-body">
-                                    <div style="height:300px;overflow:auto;">
+                                    <div class="my-custom-scrollbar">
 
                                         <table class="table table-bordered table-striped mb-0">
                                             <thead>
@@ -74,16 +74,29 @@
             console.log(answersGroup.top(Infinity));
 
             pieChart
-                .width(250)
-                .height(250)
+                .ordinalColors(['#0f2bba', '#8900ac', '#c20096', '#e9007a', '#ff125d', '#ff5241', '#ff7e24', '#ffa600'])
+                .width(document.getElementById('q-{{$question->id}}-container').offsetWidth)
+                .height(300)
+                .slicesCap(7)
+                .innerRadius(50)
+                .externalLabels(30)
+                .externalRadiusPadding(50)
+                .drawPaths(true)
                 .dimension(answersDim)
-                .group(answersGroup);
+                .group(answersGroup)
+                .legend(dc.legend().x(0).y(10).itemHeight(13).gap(5))
+                .on('pretransition', function(chart) {
+                    chart.selectAll('text.pie-slice').text(function(d) {
+                        return dc.utils.printSingleValue((d.endAngle - d.startAngle) / (2*Math.PI) * 100) + '%';
+                    })
+                });;
             
 
             var rowChart = dc.rowChart("#q-{{$question->id}}-row")
+                .ordinalColors(['#0f2bba', '#b6009c', '#f7006c', '#ff5d3a', '#ffa600'])
                 .renderLabel(true)
                 .height(250)
-                .width(350)
+                .width(document.getElementById('q-{{$question->id}}-container').offsetWidth)
                 .dimension(answersDim)
                 .group(answersGroup)
                 .cap(4)
