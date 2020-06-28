@@ -24,7 +24,7 @@
                             @endforeach
                             {{$surveys->links()}}
                         @else
-                            <p>No Messages Found</p>
+                            <p>No Surveys Found</p>
                         @endif
                     </div>
                 </div>

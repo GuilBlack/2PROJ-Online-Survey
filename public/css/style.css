@@ -23,3 +23,8 @@ html {
     background: rgb(255,255,255) !important;
     background-image: radial-gradient(circle, rgb(0, 255, 255) 6%, rgba(0,255,211,1) 42%, rgba(0,149,255,1) 100%) !important;
 }
+
+.my-custom-scrollbar {
+    height: 200px !important;
+    overflow: auto !important;
+}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Survey;
 use App\User;
+use App\Answer;
 
 class SurveyController extends Controller
 {
@@ -72,7 +73,35 @@ class SurveyController extends Controller
 
     public function showAnalytics(Survey $survey) {
         $this->authorize('view', $survey);
-        return view('survey.show-analytics', compact('survey'));
+        $questionArr = [];
+
+        //O(n3)
+        foreach ($survey->questions as $question) {
+            if ($question->type == "checkbox") {
+                $newArr = [];
+                foreach($question->answers as $answer) {
+                    $answerArr = json_decode($answer->answer);
+                    foreach($answerArr as $ans) {
+                        $tempArr = ["answer" => $ans];
+                        array_push($newArr, $tempArr);
+                    }
+                }
+                $questionArr[$question->id] = $newArr;
+
+            }elseif ($question->type == "radio") {
+                $newArr = [];
+                foreach($question->answers as $answer) {
+                    $tempArr = ["answer" => $answer->answer];
+                    array_push($newArr, $tempArr);
+                }
+                $questionArr[$question->id] = $newArr;
+
+            }else {
+                $newArr = Answer::where('question_id', $question->id)->get()->pluck('answer')->toArray();
+                $questionArr[$question->id] = $newArr;
+            }
+        }
+        return view('survey.show-analytics', compact('survey', 'questionArr'));
     }
 
     public function delete(Survey $survey) {

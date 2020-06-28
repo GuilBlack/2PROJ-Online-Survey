@@ -7,6 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!--Favicon-->
+    <link rel="icon" href="{{ URL::asset('/images/output-onlinepngtools_12.png') }}" type="image/x-icon"/>
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
@@ -19,6 +22,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dc.css') }}" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
