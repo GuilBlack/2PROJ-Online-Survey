@@ -29,7 +29,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Create Survey</button>
+                        <button type="submit" class="btn btn-primary">Confirm</button>
 
                     </form>
                 </div>

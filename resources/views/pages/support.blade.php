@@ -4,7 +4,7 @@
 <div class="row justify-content-center jumbotron">
     <div class="col-md-8 col-lg-6 form-wrapper" data-form-type="formoid">          
         <div class="form-head">
-            <h3 class="mbr-section-subtitle form-subtitle mbr-fonts-style align-center pb-3 display-4">
+            <h3 class="mbr-section-subtitle form-subtitle mbr-fonts-style align-center pb-3 display-4" style="text-align: center">
                 {{$title}}
             </h3>
         </div>
@@ -44,16 +44,4 @@
         </div>
     </div>
 </div>
-<h1>Messages:</h1>
-@if (count($crs) > 0)
-    @foreach($crs as $cr)
-        <div class="card card-body bg-light">
-            <h3><a href="/support/{{$cr->id}}">{{$cr->title}}</a></h3>
-            <small>Written on {{$cr->created_at}}</small>
-        </div>
-    @endforeach
-    {{$crs->links()}}
-@else
-    <p>No Messages Found</p>
-@endif
 @endsection

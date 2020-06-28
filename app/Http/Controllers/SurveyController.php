@@ -52,14 +52,23 @@ class SurveyController extends Controller
     }
 
     public function takeSurvey(Survey $survey) {
-        if ($survey->visible == 0 || $survey->visible == 2) {
+        if ($survey->visible == 0) {
             return redirect('/');
+        }elseif ($survey->visible == 2) {
+            return redirect('/surveys/'.$survey->id.'/take-private-survey');
+        }else{
+            return view('survey.takesurvey', compact('survey'));
         }
-        return view('survey.takesurvey', compact('survey'));
     }
 
     public function showConfirmation(Survey $survey) {
-        return view('survey.confirmation', compact('survey')); //TODO: i need to do the confirmation blade page
+        if ($survey->visible == 0) {
+            return redirect('/');
+        }elseif ($survey->visible == 1) {
+            return redirect('/surveys/'.$survey->id.'/take-survey');
+        }else {
+            return view('survey.confirmation', compact('survey'));
+        }
     }
 
     public function confirmation(Request $request, Survey $survey) {

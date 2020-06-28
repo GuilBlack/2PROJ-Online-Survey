@@ -22,38 +22,61 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                  
-              <a class="p-2 text-dark" style="margin-right: 0.5em;" href="/"><span class="material-icons" style="font-size: 25px">home</span></a>
-              <a class="p-2 text-dark" style="margin-right: 0.5em;" href="/general-survey"><span class="material-icons" style="font-size: 25px">search</span></a>
-              <a class="p-2 text-dark" style="margin-right: 0.5em;" href="/about">About Us</a>
-              <a class="p-2 text-dark" style="margin-right: 0.5em;" href="/support">Support</a>
+                <a class="p-2 text-dark" style="margin-right: 0.5em; float: right" href="/">
+                    <div style=" text-align: center;">
+                        <span class="material-icons" style="font-size: 30px;">home</span>
+                        <h6 style="margin:auto;">Home</h6>
+                    </div>
+                </a>
+                <a class="p-2 text-dark" style="margin-right: 0.5em; float: right" href="/general-survey">
+                    <div style=" text-align: center;">
+                        <span class="material-icons" style="font-size: 30px">assignment</span>
+                        <h6 style="margin:auto;">Take Survey</h6>
+                    </div>
+                </a>
+                <a class="p-2 text-dark" style="margin-right: 0.5em; float: right" href="/about">
+                    <div style=" text-align: center;">
+                        <span class="material-icons" style="font-size: 30px">help</span>
+                        <h6 style="margin:auto;">About Us</h6>
+                    </div>
+                </a>
+                <a class="p-2 text-dark" style="margin-right: 0.5em; float: right" href="/support">
+                    <div style=" text-align: center;">
+                        <span class="material-icons" style="font-size: 30px">email</span>
+                        <h6 style="margin:auto;">Contact Us</h6>
+                    </div>
+                </a>
                 <!-- Authentication Links -->
                 @guest
                     {{-- <li> --}}
-                        <a class="nav-link" style="margin-right: 0.5em;" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" style="margin-right: 0.5em; float: right" href="{{ route('login') }}">{{ __('Login') }}</a>
                     {{-- </li> --}}
                     @if (Route::has('register'))
                         {{-- <li> --}}
-                            <a class="nav-link" style="margin-right: 0.5em;" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" style="margin-right: 0.5em; float: right" href="{{ route('register') }}">{{ __('Register') }}</a>
                         {{-- </li> --}}
                     @endif
                 @else
-                    <li id="navbar-user-dropdown" class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-
-                        <div id="navbar-dropdown-items" class="dropdown-menu dropdown-menu-right" aria-labelledby="#navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                    <div style=" text-align: center;">
+                        <li id="navbar-user-dropdown" class="nav-item dropdown" style="margin-right: 0.5em; float: right">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <span class="material-icons" style="font-size: 30px">person</span>
+                                <h6 style="margin:auto;">{{ Auth::user()->name }}<h6>
                             </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
+                            <div id="navbar-dropdown-items" class="dropdown-menu dropdown-menu-right" aria-labelledby="#navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    </div>
                 @endguest
             </ul>
         </div>

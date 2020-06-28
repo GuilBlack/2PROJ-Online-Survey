@@ -56,7 +56,11 @@
                             Show Analytics
                         </a>
                         <p>Take Survey on this link:</p>
-                        <a href="/surveys/{{$survey->id}}/take-private-survey" style="font-size: 20px;">http://online-survey.test/surveys/{{$survey->id}}/take-private-survey</a></br></br>
+                        @if ($survey->visible == 2)
+                            <a href="/surveys/{{$survey->id}}/take-private-survey" style="font-size: 20px;">http://online-survey.test/surveys/{{$survey->id}}/take-private-survey</a></br></br>
+                        @else
+                            <a href="/surveys/{{$survey->id}}/take-survey" style="font-size: 20px;">http://online-survey.test/surveys/{{$survey->id}}/take-survey</a></br></br>
+                        @endif
                     @endif
                     <div class="accordion" id="accordionExample">
                             @forelse ($survey->questions as $question)
