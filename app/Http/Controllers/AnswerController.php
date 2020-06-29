@@ -11,6 +11,29 @@ class AnswerController extends Controller
     //
     public function store(Request $request, Survey $survey) {
         $request_array = $request->except('_token');
+        $optionalMessages = [];
+        $count = 1;
+        foreach ($survey->questions as $question) {
+            $foo = False;
+            if($question->optional == 0) {
+                //
+                foreach($request_array as $key => $value) {
+                    if ($question->id == $key) {
+                        if (!is_null($value['answer'])) {
+                            $foo = True;
+                        }
+                        break;
+                    }
+                }
+                if ($foo == False) {
+                    $optionalMessages[$question->id] = 'The Question '.$count.' Isn\'t Optional!';
+                }
+            }
+            ++$count;
+        }
+        if (sizeof($optionalMessages) > 0) {
+            return back()->with('optionalMessages', $optionalMessages);
+        }
         foreach ($request_array as $key => $value) {
             if (!is_null($value['answer'])) {
                 $answer = new Answer();

@@ -74,7 +74,7 @@
             console.log(answersGroup.top(Infinity));
 
             pieChart
-                .ordinalColors(['#0f2bba', '#8900ac', '#c20096', '#e9007a', '#ff125d', '#ff5241', '#ff7e24', '#ffa600'])
+                .ordinalColors(['#8900ac', '#0f2bba', '#ffa600', '#c20096', '#ff7e24', '#ff125d', '#ff5241', '#e9007a'])
                 .width(document.getElementById('q-{{$question->id}}-container').offsetWidth)
                 .height(300)
                 .slicesCap(7)
@@ -84,7 +84,7 @@
                 .drawPaths(true)
                 .dimension(answersDim)
                 .group(answersGroup)
-                .legend(dc.legend().x(0).y(10).itemHeight(13).gap(5))
+                .legend(dc.legend().x(0).y(300-((13+5)*8)).itemHeight(13).gap(5))
                 .on('pretransition', function(chart) {
                     chart.selectAll('text.pie-slice').text(function(d) {
                         return dc.utils.printSingleValue((d.endAngle - d.startAngle) / (2*Math.PI) * 100) + '%';
@@ -93,13 +93,13 @@
             
 
             var rowChart = dc.rowChart("#q-{{$question->id}}-row")
-                .ordinalColors(['#0f2bba', '#b6009c', '#f7006c', '#ff5d3a', '#ffa600'])
+                .ordinalColors(['#8900ac', '#0f2bba', '#ffa600', '#c20096', '#ff7e24', '#ff125d', '#ff5241', '#e9007a'])
                 .renderLabel(true)
                 .height(250)
                 .width(document.getElementById('q-{{$question->id}}-container').offsetWidth)
                 .dimension(answersDim)
                 .group(answersGroup)
-                .cap(4)
+                .cap(7)
                 .ordering(function(d){return -d.value;})
                 .xAxis().ticks(4);
 

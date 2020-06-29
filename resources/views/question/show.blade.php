@@ -11,6 +11,14 @@
                 <div class="card-body">
                     <form action="/questions/{{$question->id}}/edit" method="POST">
                         @csrf
+                        <div class="custom-control custom-checkbox">
+                            <input type="hidden" name="optional" value="0">
+                            <input class="custom-control-input" type="checkbox" id="optional" name="optional" value="1"
+                            @if ($question->optional == 1)
+                                checked
+                            @endif />
+                            <label class="custom-control-label" for="optional" style="margin-bottom: 0.5em">Is it an optional question?</label>
+                        </div>
                         <div class="form-group">
                             <label for="question"><h5>Question:</h5></label>
                             <input name="question" type="text" class="form-control" placeholder="Enter Your Question Here" id="question" autocomplete="off" value="{{$question->question}}">

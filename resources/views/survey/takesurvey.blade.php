@@ -16,6 +16,9 @@
                                     <div class="card-header" id="{{$question->id}}-heading">
                                         <h5 class="mb-0">
                                                 {{$question->question}}
+                                                @if ($question->optional == 0)
+                                                    <span style="color: red">*</span>
+                                                @endif
                                         </h5>
                                     </div>
 
@@ -27,21 +30,29 @@
                                                     <textarea type="text" class="form-control" placeholder="Write your answer here!" rows="5" data-form-field="Message" id="{{$question->id}}-input" name="{{ $question->id }}[answer]"></textarea>
                                                 @elseif($question->type === 'radio')
                                                     @foreach ($question->option as $key=>$value)
-                                                        <input class="form-check-input" type="radio" id="{{$question->id}}-{{ $key }}" name="{{ $question->id }}[answer]" value="{{$value}}"
-                                                        @if ($key == 0)
-                                                            checked
-                                                        @endif />
-                                                        <label class="form-check-label" for="{{$question->id}}-{{ $key }}" style="margin-bottom: 0.5em">{{ $value }}</label></br>
+                                                        <div class="custom-control custom-radio">
+                                                            <input class="form-check-input" type="radio" id="{{$question->id}}-{{ $key }}" name="{{ $question->id }}[answer]" value="{{$value}}"/>
+                                                            <label class="form-check-label" for="{{$question->id}}-{{ $key }}" style="margin-bottom: 0.5em">{{ $value }}</label>
+                                                        </div>
                                                     @endforeach
                                                 @elseif($question->type === 'checkbox')
                                                     @foreach ($question->option as $key=>$value)
-                                                        <input class="form-check-input" type="checkbox" id="{{$question->id}}-{{ $key }}" name="{{ $question->id }}[answer][]" value="{{$value}}"/>
-                                                        <label class="form-check-label" for="{{$question->id}}-{{ $key }}" style="margin-bottom: 0.5em">{{ $value }}</label></br>
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input class="custom-control-input" type="checkbox" id="{{$question->id}}-{{ $key }}" name="{{ $question->id }}[answer][]" value="{{$value}}"/>
+                                                            <label class="custom-control-label" for="{{$question->id}}-{{ $key }}" style="margin-bottom: 0.5em">{{ $value }}</label>
+                                                        </div>
                                                     @endforeach
                                                 @endif
                                         </div>
                                     </div>
                                 </div>
+                                @if (session('optionalMessages'))
+                                    @foreach (session('optionalMessages') as $messageKey=>$message)
+                                        @if ($messageKey == $question->id)
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @endif
+                                    @endforeach
+                                @endif
                                 </br>
                             @empty
                                 <p class="text-lg-left">No Questions Added Yet</p>

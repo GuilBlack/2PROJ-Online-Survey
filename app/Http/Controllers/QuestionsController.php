@@ -21,8 +21,9 @@ class QuestionsController extends Controller
         $data = $request->validate([
             'type' => 'required|string|min:1|max:255',
             'question' => 'required|string|min:1|max:255',
+            'optional' => 'required|numeric',
             'option' => 'array|max:255|nullable',
-            'option.*' => 'min:1|max:255|string'
+            'option.*' => 'bail|min:1|max:255|string'
         ]);
         $survey->questions()->create($data);
         
@@ -47,6 +48,7 @@ class QuestionsController extends Controller
 
         $data = $request->validate([
             'question' => 'required|string|min:1|max:255',
+            'optional' => 'required|numeric',
             'option' => 'array|max:255|nullable',
             'option.*' => 'min:1|max:255|string'
         ]);
@@ -54,6 +56,7 @@ class QuestionsController extends Controller
         if(isset($data['option'])) {
         $question->option = $data['option'];
         }
+        $question->optional = $data['optional'];
         $question->save();
 
         return redirect('/surveys/'.$question->survey->id.'/questions/create');

@@ -23,6 +23,12 @@
                             </select>
                         </div>
                         </br>
+                        <div class="custom-control custom-checkbox">
+                            <input type="hidden" name="optional" value="0">
+                            <input class="custom-control-input" type="checkbox" id="optional" name="optional" value="1"/>
+                            <label class="custom-control-label" for="optional" style="margin-bottom: 0.5em">Is it an optional question?</label>
+                        </div>
+                        </br>
                         <div class="form-group">
                             <label for="question"><h5>Question:</h5></label>
                             <input name="question" type="text" class="form-control" placeholder="Enter Your Question Here" id="question" autocomplete="off">
@@ -70,6 +76,9 @@
                                             <button type="button" class="btn btn-link text-left" data-toggle="collapse" data-target="#{{$question->id}}-collapse" aria-expanded="false" aria-controls="{{$question->id}}-collapse">
                                                 {{$question->question}}
                                             </button>
+                                            @if ($question->optional == 0)
+                                                <span style="color: red;">*</span>
+                                            @endif
                                             @if ($survey->visible != 1 && $survey->visible != 2)
                                             <a href="/questions/{{$question->id}}/delete"><span class="material-icons" style="font-size: 25px; float: right; color: red; margin-left: 5px">delete_forever</span></a>
                                             <a href="/questions/{{$question->id}}/show"><span class="material-icons" style="font-size: 25px; float: right;">create</span></a>
@@ -86,16 +95,17 @@
                                                         <textarea type="text" class="form-control" placeholder="Write your answer here!" name="message" rows="5" data-form-field="Message" id="{{$question->id}}-input"></textarea>
                                                     @elseif($question->type === 'radio')
                                                         @foreach ($question->option as $key=>$value)
-                                                            <input class="form-check-input" type="radio" id="{{$question->id}}-{{ $key }}" value="{{$value}}"
-                                                            @if ($key == 0)
-                                                                checked
-                                                            @endif />
-                                                            <label class="form-check-label" for="{{$question->id}}-{{ $key }}">{{ $value }}</label></br></br>
+                                                            <div class="custom-control custom-radio">
+                                                                <input class="form-check-input" type="radio" id="{{$question->id}}-{{ $key }}" value="{{$value}}"/>
+                                                                <label class="form-check-label" for="{{$question->id}}-{{ $key }}">{{ $value }}</label>
+                                                            </div>
                                                         @endforeach
                                                     @elseif($question->type === 'checkbox')
                                                         @foreach ($question->option as $key=>$value)
-                                                            <input class="form-check-input" type="checkbox" id="{{$question->id}}-{{ $key }}" />
-                                                            <label class="form-check-label" for="{{$question->id}}-{{ $key }}">{{ $value }}</label></br></br>
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input class="custom-control-input" type="checkbox" id="{{$question->id}}-{{ $key }}" />
+                                                                <label class="custom-control-label" for="{{$question->id}}-{{ $key }}">{{ $value }}</label>
+                                                            </div>
                                                         @endforeach
                                                     @endif
                                             </div>
