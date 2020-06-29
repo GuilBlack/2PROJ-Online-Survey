@@ -49,34 +49,39 @@
                 <!-- Authentication Links -->
                 @guest
                     {{-- <li> --}}
-                        <a class="nav-link" style="margin-right: 0.5em; float: right" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <div>
+                        <a class="btn btn-outline-primary" style="margin-right: 0.5em; margin-top: 0.9em" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </div>
                     {{-- </li> --}}
                     @if (Route::has('register'))
                         {{-- <li> --}}
-                            <a class="nav-link" style="margin-right: 0.5em; float: right" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <div>
+                            <a class="btn btn-outline-primary" class="nav-link" style="margin-right: 0.5em; margin-top: 0.9em" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </div>
                         {{-- </li> --}}
                     @endif
                 @else
-                    <div style=" text-align: center;">
-                        <li id="navbar-user-dropdown" class="nav-item dropdown" style="margin-right: 0.5em; float: right">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <span class="material-icons" style="font-size: 30px">person</span>
-                                <h6 style="margin:auto;">{{ Auth::user()->name }}<h6>
+                    <li id="navbar-user-dropdown" class="nav-item dropdown" style="margin-right: 0.5em;">
+                        <a id="navbarDropdown" class="nav-link" style="margin-right: 0.5em;" role="button" type="button" data-toggle="dropdown">
+                            <div style=" text-align: center;">
+                                <span class="material-icons" style="font-size: 30px">account_circle</span>
+                                <h6 style="margin:auto;">{{ Auth::user()->name }} <span class="dropdown-toggle"></span><h6>
+                            </div>
+                        </a>
+
+                        <div id="navbar-dropdown-items" class="dropdown-menu dropdown-menu-right" aria-labelledby="#navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                <img src="{{asset('/images/logout.svg')}}" style="width: 20px; margin-right: 0.5em">
+                                {{ __('Logout') }}
                             </a>
 
-                            <div id="navbar-dropdown-items" class="dropdown-menu dropdown-menu-right" aria-labelledby="#navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
                 @endguest
             </ul>
         </div>
