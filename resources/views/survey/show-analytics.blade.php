@@ -11,7 +11,7 @@
 
                 <div class="card-body">
                     @foreach ($survey->questions as $question)
-                        @if($question->type == "checkbox" || $question->type == "radio")
+                        @if($question->type == "checkbox" || $question->type == "radio" || $question->type == "number")
                             <div class="card">
                                 <div class="card-header">
                                     {{$question->question}}
@@ -57,21 +57,18 @@
 <script src="{{ asset('js/d3.js') }}"></script>
 <script src="{{ asset('js/crossfilter.js') }}"></script>
 <script src="{{ asset('js/dc.js') }}"></script>
+<script src="{{ asset('js/colorbrewer.js') }}"></script>
 
 @foreach ($survey->questions as $question)
     @if ($question->type == "checkbox" || $question->type == "radio")
-        <script defer>
-            var id{{$question->id}} = "#q-{{ $question->id }}";
-            console.log(id{{$question->id}});   
+        <script defer> 
             var pieChart = dc.pieChart("#q-{{ $question->id }}");
 
             var answers = @json($questionArr[$question->id], JSON_PRETTY_PRINT);
             
             var cf = crossfilter(answers);
             var answersDim = cf.dimension(function(d){ return d.answer;}, true);
-            console.log(answersDim.top(Infinity));
             var answersGroup = answersDim.group();
-            console.log(answersGroup.top(Infinity));
 
             pieChart
                 .ordinalColors(['#8900ac', '#0f2bba', '#ffa600', '#c20096', '#ff7e24', '#ff125d', '#ff5241', '#e9007a'])
@@ -84,7 +81,7 @@
                 .drawPaths(true)
                 .dimension(answersDim)
                 .group(answersGroup)
-                .legend(dc.legend().x(0).y(300-((13+5)*8)).itemHeight(13).gap(5))
+                .legend(dc.legend().x(0).y(20).itemHeight(13).itemWidth(-20).gap(5))
                 .on('pretransition', function(chart) {
                     chart.selectAll('text.pie-slice').text(function(d) {
                         return dc.utils.printSingleValue((d.endAngle - d.startAngle) / (2*Math.PI) * 100) + '%';
@@ -105,6 +102,54 @@
 
             dc.renderAll();
         </script>
+    @elseif($question->type == "number")
+        <script>
+            var barChart = dc.barChart("#q-{{ $question->id }}");
+            var answers = @json($questionArr[$question->id], JSON_PRETTY_PRINT);
+            var min = 100;
+            var max = 0;
+            
+            var cf = crossfilter(answers);
+            var answersDim = cf.dimension(function(d){ return d.answer;}, true);
+            var answersGroup = answersDim.group().reduceCount();
+            dimData = answersGroup.top(Infinity);
+
+            if(Object.keys(dimData).length == 0) {
+                min = 0;
+                max = 100;
+            }
+
+            dimData.forEach(function (x) {
+                if (min > Object.values(x)[0]) {
+                    min = Object.values(x)[0];
+                }
+                if (max < Object.values(x)[0]) {
+                    max = Object.values(x)[0];
+                }
+            });
+
+            barChart
+                .colorAccessor(d => d.key)
+                .colors("#9683EC") //d3.scale.ordinal().domain([min,max]).range(colorbrewer.RdBu[Object.keys(dimData).length])
+                .width(document.getElementById('q-{{$question->id}}-container').offsetWidth)
+                .height(400)
+                .x(d3.scale.linear().domain([min,max+1]))
+                .brushOn(false)
+                .yAxisLabel("Count")
+                .dimension(answersDim)
+                .group(answersGroup)
+                .elasticY(true)
+                .on('renderlet', function(chart) {
+                    chart.selectAll('rect').on("click", function(d) {
+                        console.log("click!", d);
+                    });
+                });
+
+            dc.renderAll();
+
+
+        </script>
+        
     @endif
 @endforeach
 

@@ -97,10 +97,14 @@ class SurveyController extends Controller
                 }
                 $questionArr[$question->id] = $newArr;
 
-            }elseif ($question->type == "radio") {
+            }elseif ($question->type == "radio" || $question->type == "number") {
                 $newArr = [];
                 foreach($question->answers as $answer) {
-                    $tempArr = ["answer" => $answer->answer];
+                    if ($question->type == "radio") {
+                        $tempArr = ["answer" => $answer->answer];
+                    }else {
+                        $tempArr = ["answer" => (int)$answer->answer];
+                    }
                     array_push($newArr, $tempArr);
                 }
                 $questionArr[$question->id] = $newArr;

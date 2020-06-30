@@ -42,6 +42,17 @@
                                                             <label class="custom-control-label" for="{{$question->id}}-{{ $key }}" style="margin-bottom: 0.5em">{{ $value }}</label>
                                                         </div>
                                                     @endforeach
+                                                @elseif($question->type === 'number')
+                                                    <div class="form-group option-group">
+                                                        <input placeholder="Enter Value Here" name="{{ $question->id }}[answer]" type="number" class="form-control"
+                                                        @foreach ($question->option as $key=>$minMax)
+                                                            @if ($key == 0)
+                                                                min="{{$minMax}}"
+                                                            @else
+                                                                max="{{$minMax}}"
+                                                            @endif
+                                                        @endforeach />
+                                                    </div>
                                                 @endif
                                         </div>
                                     </div>
@@ -57,7 +68,7 @@
                             @empty
                                 <p class="text-lg-left">No Questions Added Yet</p>
                             @endforelse
-                            <span class="input-group-btn"><button type="submit" class="btn btn-lg btn-form btn-info display-4">Submit</button></span>
+                            <span class="input-group-btn"><button type="submit" class="btn btn-lg btn-form btn-primary display-4">Submit</button></span>
                         </form>
                     </div>
                 </div>

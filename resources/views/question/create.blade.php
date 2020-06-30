@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @include('include.messages')
+@include('include.optional-message')
 
 @if ($survey->visible != 1 && $survey->visible != 2)
 <div class="container">
@@ -19,6 +20,7 @@
                                 <option value="text">Text</option>
                                 <option value="radio">Radio Buttons</option>
                                 <option value="checkbox">Checkbox</option>
+                                <option value="number">Numeric</option>
                                 <option value="textarea">Text Area</option>
                             </select>
                         </div>
@@ -107,6 +109,17 @@
                                                                 <label class="custom-control-label" for="{{$question->id}}-{{ $key }}">{{ $value }}</label>
                                                             </div>
                                                         @endforeach
+                                                    @elseif($question->type === 'number')
+                                                        <div class="form-group option-group">
+                                                            <input placeholder="Enter Value Here" type="number" class="form-control"
+                                                            @foreach ($question->option as $key=>$minMax)
+                                                                @if ($key == 0)
+                                                                    min="{{$minMax}}"
+                                                                @else
+                                                                    max="{{$minMax}}"
+                                                                @endif
+                                                            @endforeach />
+                                                        </div>
                                                     @endif
                                             </div>
                                         </div>

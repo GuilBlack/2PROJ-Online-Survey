@@ -8,7 +8,7 @@
 
   <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-      <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/" id="jenesaispasquoimettreici" style="font-size: 25px; margin-right: 0.5em">{{config('app.name', 'Online Survey')}}</a></h5>
+        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/" id="jenesaispasquoimettreici"style="font-size: 25px; margin-right: 0.5em"><img src="/images/2.png" width = "85" height = "75" alt="Italian Trulli"></a></h5>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -31,7 +31,7 @@
                 <a class="p-2 text-dark" style="margin-right: 0.5em; float: right" href="/general-survey">
                     <div style=" text-align: center;">
                         <span class="material-icons" style="font-size: 30px">assignment</span>
-                        <h6 style="margin:auto;">Take Survey</h6>
+                        <h6 style="margin:auto;">View Surveys</h6>
                     </div>
                 </a>
                 <a class="p-2 text-dark" style="margin-right: 0.5em; float: right" href="/about">

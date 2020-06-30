@@ -13,7 +13,7 @@
             <form class="mbr-form" action="" method="get" data-form-title="Support Form">
                 <div class="input-wrap" data-for="title">
                     <label class="form-label-outside mbr-lighter" for="form-1-title" style="text-align: center !important;">Title</label>
-                    <input type="text" class="form-control" placeholder="Contact Us Title" style="text-align: center !important;" name="title" data-form-field="First Name" required="" id="title-form4-1">
+                    <input type="text" class="form-control" placeholder="Contact Us Title" name="title" data-form-field="First Name" required="" id="title-form4-1">
                     @error('title')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
@@ -23,7 +23,7 @@
             
                 <div class="input-wrap" data-for="email">
                     <label class="form-label-outside mbr-lighter" for="form-1-email">Email</label>
-                    <input type="email" class="form-control" placeholder="email@support.com" style="text-align: center !important;" name="email" data-form-field="Email" required="" id="email-form4-1">
+                    <input type="email" class="form-control" placeholder="email@support.com" name="email" data-form-field="Email" required="" id="email-form4-1">
                     @error('email')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror

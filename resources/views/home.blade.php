@@ -2,9 +2,10 @@
 
 @section('content')
 @guest
-    <div class="jumbotron" style="text-align: center">
-        <h1 class="display-3">{{config('app.name', 'Online Survey')}}</h1>
-        <p class="lead">Hello there o/ <br> This is the Online Survey!</p>
+     <div class="jumbotron" style="text-align: center">
+        <h1 class="display-3">BIG BROTHER</h1>
+        <p class="lead">Welcome to <br> Big Brother Survey Editor!</p>
+        <hr></hr>
         <p><a class="btn btn-lg btn-success btn-lg" href="{{ route('register') }}" role="button">Sign Up</a></p>
     </div>
 @else

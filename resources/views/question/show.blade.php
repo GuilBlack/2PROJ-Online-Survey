@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @include('include.messages')
+@include('include.optional-message')
 
 <div class="container">
     <div class="row justify-content-center">
@@ -38,6 +39,26 @@
                                 @endforeach
 
                             </div>
+                        @elseif($question->type == "number")
+                            @foreach ($question->option as $key=>$option)
+                                <div class="form-group option-group">
+                                    <label for="option">
+                                        @if ($key == 0)
+                                            Min
+                                        @else
+                                            Max
+                                        @endif
+                                    </label>
+                                    <input name="option[]" id="option[]" placeholder="Enter Value Here" type="number" class="form-control" autocomplete="off"
+                                    @if ($key == 0)
+                                        min="0" max="99"
+                                    @else
+                                        min="1" max="100"
+                                    @endif
+                                    value="{{$option}}">
+                                </div>
+                            @endforeach
+                            
                         @endif
                         </br>
                         <button type="submit" class="btn btn-primary">Edit Question</button>

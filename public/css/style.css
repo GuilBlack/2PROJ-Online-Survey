@@ -21,10 +21,47 @@ html {
 
 .body-style {
     background: rgb(255,255,255) !important;
-    background-image: radial-gradient(circle, rgb(0, 255, 255) 6%, rgba(0,255,211,1) 42%, rgba(0,149,255,1) 100%) !important;
+    background-image: radial-gradient(circle, rgb(192,208,218) 6%, #aeafe9 42%, rgb(93, 255, 219) 100%) !important;
+    background-attachment: fixed;
 }
 
 .my-custom-scrollbar {
     height: 300px !important;
     overflow: auto !important;
 }
+
+.display-3 {
+    font-size: 50px;
+    font-family: 'Lucida Sans';
+}
+
+.display-4 {
+    text-align: center;
+}
+
+.jumbotron {
+    padding: 2rem 1rem !important;
+    margin-bottom: 2rem !important;
+    background-color: white !important;
+    border-radius: 15px !important;
+    opacity: 1 !important;
+}
+
+.card-header-title {
+    text-align: center;
+    font-size: x-large;
+}
+
+.btn-info{
+    margin-left: 200px;
+
+}
+
+.title{
+    font-size: 50px;
+    font-family: 'Lucida Sans';
+}
+
+.input-wrap{
+    text-align: left;
+}    
