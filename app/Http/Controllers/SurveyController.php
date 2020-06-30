@@ -37,6 +37,11 @@ class SurveyController extends Controller
         return view('pages.survey', compact('surveys'));
     }
 
+    public function search(Request $request) {
+        $surveys = Survey::where('title', 'like', '%'.$request->search.'%')->where('visible', 1)->orderBy('created_at', 'DESC')->paginate(10);
+        return view('pages.survey', compact('surveys'));
+    }
+
     public function makeVisible(Survey $survey) {
         $this->authorize('view', $survey);
         $survey->visible = 1;
@@ -76,7 +81,7 @@ class SurveyController extends Controller
         if ($arr['name'] == $survey->user->name && $arr['title'] == $survey->title) {
             return view('survey.takesurvey', compact('survey'));
         }else {
-            return response('Unauthorized.', 403);
+            return abort(403, 'Unauthorized action.');
         }
     }
 

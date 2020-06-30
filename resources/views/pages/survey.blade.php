@@ -9,6 +9,13 @@
                     <div class="card-header"><h1>Surveys<h1></div>
 
                     <div class="card-body">
+                        <form action="/general-survey" method="POST" class="form-inline d-flex justify-content-center md-form form active-cyan-2 mt-2">
+                            @csrf
+                            <input class="form-control form-control mr-3 w-75" name="search" type="text" placeholder="Search for Survey"
+                              aria-label="Search">
+                            <button class="btn btn-elegant btn-rounded" type="submit"><span class="material-icons">search</span></button>
+                        </form>
+                        </br>
                         @auth
                         <a href="/surveys/create" class="btn btn-custom btn-lg btn-block" style="margin-bottom: 15px">Create New Survey</a>
                         @endauth

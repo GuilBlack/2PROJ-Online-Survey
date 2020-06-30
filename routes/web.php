@@ -29,6 +29,7 @@ Route::get('/users/{id}/{name}', function ($id, $name) {
 Route::get('/about', 'PagesController@about');
 
 Route::get('/general-survey', 'SurveyController@show');
+Route::post('/general-survey', 'SurveyController@search');
 
 Route::resource('support', 'ContactRequestsController');
 

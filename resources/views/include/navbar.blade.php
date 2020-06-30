@@ -49,13 +49,13 @@
                 <!-- Authentication Links -->
                 @guest
                     {{-- <li> --}}
-                        <div>
+                        <div style="text-align: center">
                         <a class="btn btn-outline-primary" style="margin-right: 0.5em; margin-top: 0.9em" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </div>
                     {{-- </li> --}}
                     @if (Route::has('register'))
                         {{-- <li> --}}
-                            <div>
+                            <div style="text-align: center">
                             <a class="btn btn-outline-primary" class="nav-link" style="margin-right: 0.5em; margin-top: 0.9em" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </div>
                         {{-- </li> --}}
